@@ -1,0 +1,55 @@
+# Applied by applications/helm-services.yaml
+apps:
+  - name: artifact-hub
+    chartRepo: https://artifacthub.github.io/helm-charts/
+    chartName: artifacthub/hub
+    targetRevision: latest
+    why: "Catalogue and browse cloud-native packages"
+
+  - name: baby-buddy
+    chartRepo: https://charts.truecharts.org/
+    chartName: truecharts/babybuddy
+    targetRevision: latest
+    why: "Tracking feedings, diapers & baby care tasks"
+
+  - name: gitlab
+    chartRepo: https://charts.gitlab.io/
+    chartName: gitlab/gitlab
+    targetRevision: latest
+    why: "Git & CI/CD platform for the cluster"
+
+  - name: grocy
+    chartRepo: https://charts.truecharts.org/
+    chartName: truecharts/grocy
+    targetRevision: latest
+    why: "Home groceries & household management"
+
+  - name: home-assistant
+    chartRepo: https://pajikos.github.io/home-assistant-helm-chart/
+    chartName: home-assistant/home-assistant
+    targetRevision: latest
+    why: "Home automation system"
+
+  - name: jellyfin
+    chartRepo: https://jellyfin.github.io/jellyfin-helm/
+    chartName: jellyfin/jellyfin
+    targetRevision: latest
+    why: "Media streaming server"
+
+  - name: kavita
+    chartRepo: https://charts.truecharts.org/
+    chartName: truecharts/kavita
+    targetRevision: latest
+    why: "Digital library / reading manager"
+
+  - name: monica
+    chartRepo: https://charts.monicahq.io/
+    chartName: monica/monica
+    targetRevision: latest
+    why: "Personal relationship management system"
+
+  - name: photoprism
+    chartRepo: https://p80n.github.io/photoprism-helm/
+    chartName: photoprism/photoprism
+    targetRevision: latest
+    why: "Photo management & indexing service"

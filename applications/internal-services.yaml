@@ -1,0 +1,28 @@
+# In application repos, put manifests in manifests/dir
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: internal-apps
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+#          - name: example-service
+#            repoURL: https://github.com/evoteum/example-service.git
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: internal
+      source:
+        repoURL: '{{repoURL}}'
+        targetRevision: main
+        path: manifests/overlays/prod
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{name}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

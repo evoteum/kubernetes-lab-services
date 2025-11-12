@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: helm-services
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/evoteum/kubernetes-lab-services.git
+        revision: main
+        files:
+          - path: helm-charts.yaml
+  template:
+    metadata:
+      name: '{{name}}'
+      labels:
+        app.kubernetes.io/part-of: helm-services
+      annotations:
+        evoteum.dev/why: '{{why}}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{chartRepo}}'
+        chart: '{{chartName}}'
+        targetRevision: '{{targetRevision}}'
+        helm:
+          releaseName: '{{name}}'
+          valueFiles:
+            - 'values/{{name}}.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{default name namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+  templatePatch: |
+    {{- if not (hasKey . "enabled") -}}
+      {{- $_ := set . "enabled" true -}}
+    {{- end -}}
+  ignoreApplicationDifferences:
+    - jsonPointers: ["/spec/source/helm/valueFiles"]
+  ignoreApplicationNameDifferences: true

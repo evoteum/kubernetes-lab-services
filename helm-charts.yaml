@@ -53,3 +53,15 @@ apps:
     chartName: photoprism/photoprism
     targetRevision: latest
     why: "Photo management & indexing service"
+
+  - name: mailu
+    chartRepo: https://mailu.github.io/helm-charts/
+    chartName: mailu/mailu
+    targetRevision: latest
+    why: Email
+
+  - name: pihole
+    chartRepo: https://mojo2600.github.io/pihole-kubernetes
+    chartName: mojo2600/pihole
+    targetRevision: latest
+    why: DNS

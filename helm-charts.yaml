@@ -1,10 +1,10 @@
 # Applied by applications/helm-services.yaml
 apps:
-  - name: artifact-hub
-    chartRepo: https://artifacthub.github.io/helm-charts/
-    chartName: artifacthub/hub
+  - name: harbor
+    chartRepo: https://helm.goharbor.io
+    chartName: harbor/harbor
     targetRevision: latest
-    why: "Catalogue and browse cloud-native packages"
+    why: "store containers"
 
   - name: baby-buddy
     chartRepo: https://charts.truecharts.org/
@@ -40,7 +40,7 @@ apps:
     chartRepo: https://charts.truecharts.org/
     chartName: truecharts/kavita
     targetRevision: latest
-    why: "Digital library / reading manager"
+    why: "Digital library"
 
   - name: monica
     chartRepo: https://charts.monicahq.io/

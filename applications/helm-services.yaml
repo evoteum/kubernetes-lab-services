@@ -25,15 +25,19 @@ spec:
         targetRevision: '{{targetRevision}}'
         helm:
           releaseName: '{{name}}'
-          valueFiles:
-            - 'values/{{name}}.yaml'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{default name namespace}}'
+        namespace: '{{name}}'
+        namespaceMetadata:
+          labels:
+            app.kubernetes.io/managed-by: argocd
+            evoteum.dev/component: helm-service
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
   templatePatch: |
     {{- if not (hasKey . "enabled") -}}
       {{- $_ := set . "enabled" true -}}

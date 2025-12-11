@@ -1,5 +1,8 @@
 # Applied by applications/helm-services.yaml
-apps:
+apiVersion: evoteum.dev/v1alpha1
+kind: HelmServiceList
+
+items:
   - name: harbor
     chartRepo: https://helm.goharbor.io
     chartName: harbor/harbor

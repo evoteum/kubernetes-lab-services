@@ -8,30 +8,39 @@ spec:
     - git:
         repoURL: https://github.com/evoteum/kubernetes-lab-services.git
         revision: main
-        files:
-          - path: helm-charts.yaml
+        directories:
+          - path: services
+    - list:
+        elements: "{{ items }}"
+  strategy:
+    generators:
+      - matrix:
+          generators:
+            - git
+            - list
   template:
     metadata:
-      name: '{{name}}'
+      name: "{{ name }}"
       labels:
-        app.kubernetes.io/part-of: helm-services
+        evoteum.dev/component: helm-service
       annotations:
-        evoteum.dev/why: '{{why}}'
+        evoteum.dev/why: "{{ why }}"
     spec:
       project: default
       source:
-        repoURL: '{{chartRepo}}'
-        chart: '{{chartName}}'
-        targetRevision: '{{targetRevision}}'
+        repoURL: "{{ chartRepo }}"
+        chart: "{{ chartName }}"
+        targetRevision: "{{ targetRevision }}"
         helm:
-          releaseName: '{{name}}'
+          releaseName: "{{ name }}"
+          valueFiles:
+            - "{{ valuesFile }}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{name}}'
+        namespace: "{{ namespace }}"
         namespaceMetadata:
           labels:
             app.kubernetes.io/managed-by: argocd
-            evoteum.dev/component: helm-service
       syncPolicy:
         automated:
           prune: true
@@ -39,9 +48,6 @@ spec:
         syncOptions:
           - CreateNamespace=true
   templatePatch: |
-    {{- if not (hasKey . "enabled") -}}
-      {{- $_ := set . "enabled" true -}}
-    {{- end -}}
-  ignoreApplicationDifferences:
-    - jsonPointers: ["/spec/source/helm/valueFiles"]
-  ignoreApplicationNameDifferences: true
+    {{- if not ( hasKey . "enabled" ) or not .enabled }}
+      {{- set . "skip" true }}
+    {{- end }}

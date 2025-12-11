@@ -42,6 +42,8 @@ Services that run in the lab
 [//]: # (REQUIRED)
 [//]: # (Delete as appropriate)
 
+[//]: # (TOCGEN_TABLE_OF_CONTENTS_START)
+
 1. [Security](#security)
 1. [Background](#background)
 1. [Install](#install)
@@ -55,15 +57,20 @@ Services that run in the lab
 1. [Contributing](#contributing)
 1. [License](#license)
 
-[//]: # (## Security)
+[//]: # (TOCGEN_TABLE_OF_CONTENTS_END)
+
+
+## Security
 [//]: # (OPTIONAL)
 [//]: # (May go here if it is important to highlight security concerns.)
 
+Deploys services to Kubernetes. Third party services may need further inspection.
 
-
-[//]: # (## Background)
+## Background
 [//]: # (OPTIONAL)
 [//]: # (Explain the motivation and abstract dependencies for this repo)
+
+This repository is designed to simplify the process of adding new services into the platform.
 
 ## Install
 
@@ -71,13 +78,13 @@ Services that run in the lab
 [//]: # (OPTIONAL IF documentation repo)
 [//]: # (ELSE REQUIRED)
 
-
+Nothing to install, everything runs through ArgoCD.
 
 ## Usage
 [//]: # (REQUIRED)
 [//]: # (Explain what the thing does. Use screenshots and/or videos.)
 
-
+To deploy a new helm service, add it to helm-charts.yaml.
 
 [//]: # (Extra sections)
 [//]: # (OPTIONAL)

@@ -35,7 +35,9 @@ Services that run in the lab
 [//]: # (Must not have its own title)
 [//]: # (A detailed description of the repo)
 
+This repository both catalogues the services that we run, and allows them to be deployed via ArgoCD.
 
+Future improvement: move app.yaml in the repo.
 
 ## Table of Contents
 

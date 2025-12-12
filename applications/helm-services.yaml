@@ -8,16 +8,10 @@ spec:
     - git:
         repoURL: https://github.com/evoteum/kubernetes-lab-services.git
         revision: main
-        directories:
-          - path: services
+        files:
+          - path: helm-charts.yaml
     - list:
         elements: "{{ items }}"
-  strategy:
-    generators:
-      - matrix:
-          generators:
-            - git
-            - list
   template:
     metadata:
       name: "{{ name }}"
@@ -33,11 +27,9 @@ spec:
         targetRevision: "{{ targetRevision }}"
         helm:
           releaseName: "{{ name }}"
-          valueFiles:
-            - "{{ valuesFile }}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{ namespace }}"
+        namespace: "{{ name }}"
         namespaceMetadata:
           labels:
             app.kubernetes.io/managed-by: argocd

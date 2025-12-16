@@ -10,8 +10,6 @@ spec:
         revision: main
         files:
           - path: helm-charts.yaml
-    - list:
-        elements: "{{ items }}"
   template:
     metadata:
       name: "{{ name }}"
@@ -39,7 +37,3 @@ spec:
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
-  templatePatch: |
-    {{- if not ( hasKey . "enabled" ) or not .enabled }}
-      {{- set . "skip" true }}
-    {{- end }}

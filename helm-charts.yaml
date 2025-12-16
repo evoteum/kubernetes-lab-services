@@ -6,66 +6,66 @@ items:
   - name: harbor
     chartRepo: https://helm.goharbor.io
     chartName: harbor/harbor
-    targetRevision: latest
+    targetRevision: 1.18.1
     why: "store containers"
 
   - name: baby-buddy
     chartRepo: https://charts.truecharts.org/
     chartName: truecharts/babybuddy
-    targetRevision: latest
+    targetRevision: 2.3.0
     why: "Tracking feedings, diapers & baby care tasks"
 
   - name: gitlab
     chartRepo: https://charts.gitlab.io/
     chartName: gitlab/gitlab
-    targetRevision: latest
+    targetRevision: 9.6.2
     why: "Git & CI/CD platform for the cluster"
 
   - name: grocy
-    chartRepo: https://charts.truecharts.org/
-    chartName: truecharts/grocy
-    targetRevision: latest
+    chartRepo: https://geek-cookbook.github.io/charts/
+    chartName: geek-cookbook/grocy
+    targetRevision: 8.5.2
     why: "Home groceries & household management"
 
   - name: home-assistant
     chartRepo: https://pajikos.github.io/home-assistant-helm-chart/
     chartName: home-assistant/home-assistant
-    targetRevision: latest
+    targetRevision: 0.3.35
     why: "Home automation system"
 
   - name: jellyfin
     chartRepo: https://jellyfin.github.io/jellyfin-helm/
     chartName: jellyfin/jellyfin
-    targetRevision: latest
+    targetRevision: 2.7.0
     why: "Media streaming server"
 
   - name: kavita
     chartRepo: https://charts.truecharts.org/
     chartName: truecharts/kavita
-    targetRevision: latest
+    targetRevision: 1.0.0
     why: "Digital library"
 
   - name: monica
     chartRepo: https://charts.monicahq.io/
     chartName: monica/monica
-    targetRevision: latest
+    targetRevision: 1.0.14
     enabled: true
     why: "Personal relationship management system"
 
   - name: photoprism
-    chartRepo: https://p80n.github.io/photoprism-helm/
-    chartName: photoprism/photoprism
-    targetRevision: latest
+    chartRepo: https://charts.photoprism.app/photoprism
+    chartName: photoprism/photoprism-plus
+    targetRevision: 1.0.0
     why: "Photo management & indexing service"
 
   - name: mailu
     chartRepo: https://mailu.github.io/helm-charts/
     chartName: mailu/mailu
-    targetRevision: latest
+    targetRevision: 0.3.5
     why: Email
 
   - name: pihole
     chartRepo: https://mojo2600.github.io/pihole-kubernetes
     chartName: mojo2600/pihole
-    targetRevision: latest
+    targetRevision: 2.35.0
     why: DNS

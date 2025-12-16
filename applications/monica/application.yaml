@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monica
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: monica
+    app.kubernetes.io/part-of: kubernetes-lab-services
+  annotations:
+    evoteum.dev/why: "Personal relationship management system"
+spec:
+  project: default
+
+  source:
+    repoURL: https://charts.monicahq.io/
+    chart: monica/monica
+    targetRevision: 1.0.14
+    helm:
+      releaseName: monica
+      values: |
+        service:
+          type: ClusterIP
+          port: 80
+
+        ingress:
+          enabled: false
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monica
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

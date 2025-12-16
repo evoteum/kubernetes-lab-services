@@ -49,12 +49,6 @@ spec:
             targetRevision: 1.0.0
             why: "Digital library"
 
-          - name: monica
-            chartRepo: https://charts.monicahq.io/
-            chartName: monica/monica
-            targetRevision: 1.0.14
-            why: "Personal relationship management system"
-
           - name: photoprism
             chartRepo: https://charts.photoprism.app/photoprism
             chartName: photoprism/photoprism-plus

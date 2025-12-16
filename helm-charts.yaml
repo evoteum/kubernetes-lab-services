@@ -49,7 +49,6 @@ items:
     chartRepo: https://charts.monicahq.io/
     chartName: monica/monica
     targetRevision: 1.0.14
-    enabled: true
     why: "Personal relationship management system"
 
   - name: photoprism

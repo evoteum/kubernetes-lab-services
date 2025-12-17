@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: photoprism
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.photoprism.app/photoprism
+    chart: photoprism/photoprism-plus
+    targetRevision: 1.0.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: photoprism
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

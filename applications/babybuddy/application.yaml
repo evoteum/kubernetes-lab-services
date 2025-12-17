@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: babybuddy
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.truecharts.org/
+    chart: truecharts/babybuddy
+    targetRevision: 2.3.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: babybuddy
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

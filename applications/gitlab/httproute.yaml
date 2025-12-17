@@ -1,0 +1,15 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  parentRefs:
+    - name: main-gateway
+      namespace: gateway-api-system
+  hostnames:
+    - gitlab.production.k8s.evoteum.com
+  rules:
+    - backendRefs:
+        - name: gitlab
+          port: 8080

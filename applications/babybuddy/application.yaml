@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.truecharts.org/
-    chart: truecharts/babybuddy
+    repoURL: https://nicholaswilde.github.io/helm-charts/
+    chart: babybuddy
     targetRevision: 2.3.0
   destination:
     server: https://kubernetes.default.svc

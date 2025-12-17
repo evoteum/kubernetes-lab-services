@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://mojo2600.github.io/pihole-kubernetes
-    chart: mojo2600/pihole
+    chart: pihole
     targetRevision: 2.35.0
   destination:
     server: https://kubernetes.default.svc

@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://charts.photoprism.app/photoprism
-    chart: photoprism/photoprism-plus
+    chart: photoprism-plus
     targetRevision: 1.0.0
   destination:
     server: https://kubernetes.default.svc

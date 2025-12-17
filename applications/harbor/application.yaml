@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://helm.goharbor.io
-    chart: harbor/harbor
+    chart: harbor
     targetRevision: 1.18.1
   destination:
     server: https://kubernetes.default.svc

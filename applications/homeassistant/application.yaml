@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://pajikos.github.io/home-assistant-helm-chart/
-    chart: home-assistant/home-assistant
+    chart: home-assistant
     targetRevision: 0.3.35
   destination:
     server: https://kubernetes.default.svc

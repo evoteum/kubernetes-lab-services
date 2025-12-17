@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://mailu.github.io/helm-charts/
     chart: mailu/mailu
-    targetRevision: 0.3.5
+    targetRevision: 2.6.3
   destination:
     server: https://kubernetes.default.svc
     namespace: mailu

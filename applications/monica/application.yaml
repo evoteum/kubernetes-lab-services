@@ -13,7 +13,7 @@ spec:
 
   source:
     repoURL: https://charts.monicahq.io/
-    chart: monica/monica
+    chart: monica
     targetRevision: 1.0.14
     helm:
       releaseName: monica

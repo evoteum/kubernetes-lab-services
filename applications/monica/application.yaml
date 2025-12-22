@@ -12,7 +12,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://charts.monicahq.io/
+    repoURL: https://monicahq.github.io/helm
     chart: monica
     targetRevision: 1.0.14
     helm:

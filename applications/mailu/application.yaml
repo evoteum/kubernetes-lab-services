@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://mailu.github.io/helm-charts/
-    chart: mailu/mailu
+    chart: mailu
     targetRevision: 2.6.3
   destination:
     server: https://kubernetes.default.svc

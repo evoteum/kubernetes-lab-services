@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://truecharts.org/
+    repoURL: oci://oci.trueforge.org/truecharts
     chart: kavita
     targetRevision: 1.0.0
   destination:

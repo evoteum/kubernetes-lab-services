@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kavita
+  name: komga
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: oci://oci.trueforge.org/truecharts
-    chart: kavita
-    targetRevision: 1.0.0
+    repoURL: https://geek-cookbook.github.io/charts
+    chart: komga
+    targetRevision: 2.4.2
   destination:
     server: https://kubernetes.default.svc
-    namespace: kavita
+    namespace: komga
   syncPolicy:
     automated:
       prune: true

@@ -11,5 +11,5 @@ spec:
     - homeassistant.production.k8s.evoteum.com
   rules:
     - backendRefs:
-        - name: homeassistant
+        - name: homeassistant-home-assistant
           port: 8080

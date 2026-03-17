@@ -9,6 +9,10 @@ spec:
     repoURL: https://charts.photoprism.app/photoprism
     chart: photoprism-plus
     targetRevision: 1.0.0
+    helm:
+      values: |
+        image:
+          tag: "250321"
   destination:
     server: https://kubernetes.default.svc
     namespace: photoprism

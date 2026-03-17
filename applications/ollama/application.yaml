@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ollama
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: ollama
+    app.kubernetes.io/part-of: kubernetes-lab-services
+  annotations:
+    evoteum.dev/why: "AI Assistant"
+spec:
+  project: default
+
+  source:
+    repoURL: https://otwld.github.io/ollama-helm/
+    chart: ollama
+    targetRevision: 0.4.0
+    helm:
+      releaseName: ollama
+      values: |
+        service:
+          type: ClusterIP
+          port: 80
+
+        ingress:
+          enabled: false
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ollama
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: open-webui
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: open-webui
+    app.kubernetes.io/part-of: kubernetes-lab-services
+  annotations:
+    evoteum.dev/why: "AI Interface"
+spec:
+  project: default
+
+  source:
+    repoURL: https://helm.openwebui.com/
+    chart: open-webui
+    targetRevision: 12.10.0
+    helm:
+      releaseName: open-webui
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: open-webui
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

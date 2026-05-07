@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://flagger.app
     chart: flagger/flagger
-    targetRevision: 2.3.0
+    targetRevision: 1.43.0
   destination:
     server: https://kubernetes.default.svc
     namespace: flagger

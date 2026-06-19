@@ -1,25 +1,23 @@
 # itsbeginningtolookalotlikechristmas
 
-Runs the daily Spotify popularity poll for [itsbeginningtolookalotlikechristmas](https://github.com/evoteum/itsbeginningtolookalotlikechristmas)
-as an in-cluster `CronJob`, replacing the GitHub Actions scheduled workflow (which was unreliable
-about actually firing on schedule). The job clones the application repo, runs `src/spotify.py`,
-and pushes `data.csv` straight back to GitHub so the data stays in git.
+Deploys two workloads for [itsbeginningtolookalotlikechristmas](https://github.com/evoteum/itsbeginningtolookalotlikechristmas):
 
-Manifests live in the application's own repo under `manifests/`; this `Application` just points
-ArgoCD at that path.
+- **datagather** — daily `CronJob` that fetches the Spotify popularity score and pushes `data.csv` back to GitHub.
+- **site** — 3-pod nginx `Deployment` (HPA up to 10) serving the static site, with a 2-pod `cloudflared` sidecar exposing it via Cloudflare Tunnel.
+
+The Helm chart lives in the application's own repo under `chart/`; this `Application` points ArgoCD at that path.
 
 ## Required secrets
 
-Secrets are sourced from OpenBao via the `openbao` `ClusterSecretStore` and synced into the
-`itsbeginningtolookalotlikechristmas` namespace by the `ExternalSecret` resources in
-[`manifests/externalsecrets.yaml`](https://github.com/evoteum/itsbeginningtolookalotlikechristmas/blob/main/manifests/externalsecrets.yaml).
-Nothing is committed to git — populate these paths/keys in OpenBao before the CronJob can run:
+Sourced from OpenBao via the `openbao` `ClusterSecretStore`. Run [`init-secrets.sh`](init-secrets.sh) to create the paths — nothing is committed to git.
 
-| OpenBao path                                      | Key              | Value                              |
-|----------------------------------------------------|------------------|-------------------------------------|
-| `itsbeginningtolookalotlikechristmas/spotify`       | `client_id`      | Spotify app client ID                |
-| `itsbeginningtolookalotlikechristmas/spotify`       | `client_secret`  | Spotify app client secret            |
-| `itsbeginningtolookalotlikechristmas/git-deploy-key`| `ssh_privatekey` | SSH private key (deploy key)         |
+| OpenBao path                                           | Key              | Value                        |
+|--------------------------------------------------------|------------------|------------------------------|
+| `itsbeginningtolookalotlikechristmas/spotify`          | `client_id`      | Spotify app client ID        |
+| `itsbeginningtolookalotlikechristmas/spotify`          | `client_secret`  | Spotify app client secret    |
+| `itsbeginningtolookalotlikechristmas/git-deploy-key`   | `ssh_privatekey` | SSH deploy key (private key) |
+| `itsbeginningtolookalotlikechristmas/cloudflare-tunnel`| `token`          | Cloudflare Tunnel token (retrieve after first tunnel sync — see tunnel README) |
 
-The corresponding public key must be added to the `itsbeginningtolookalotlikechristmas` GitHub
-repo (Settings → Deploy keys) with **write access** enabled.
+The deploy key's public half must be added to the GitHub repo (Settings → Deploy keys) with **write access** enabled.
+
+The Cloudflare Tunnel is managed by Crossplane in `kubernetes-lab-config/platform/tunnel/itsbeginningtolookalotlikechristmas/`; see the README there for platform-level secrets (`cloudflare-tunnel-secret`, `cloudflare/api-token`).

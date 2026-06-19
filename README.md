@@ -50,6 +50,7 @@ Future improvement: move app.yaml in the repo.
 - [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
+- [Bump count](#bump-count)
 - [Documentation](#documentation)
 - [Repository Configuration](#repository-configuration)
 - [Contributing](#contributing)

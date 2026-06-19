@@ -92,6 +92,14 @@ To deploy a new helm service, add it to helm-charts.yaml.
 [//]: # (This is a space for ≥0 sections to be included,)
 [//]: # (each of which must have their own titles.)
 
+## Bump count
+
+You may notice that our Argo applications include an `annotations.bumpCount` field.
+
+This is a workaround that allows Argo CD to nudge Cilium, which helps ensure DNS is
+refreshed. It is not used for normal operational purposes, so you do not need to update
+it when making unrelated changes to an application.
+
 
 
 ## Documentation

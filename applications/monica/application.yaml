@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: https://monicahq.github.io/helm
     chart: monica
-    targetRevision: 1.0.14
+    targetRevision: 1.0.15
     helm:
       releaseName: monica
       values: |

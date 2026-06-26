@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: itsbeginningtolookalotlikechristmas
+  namespace: argocd
+  annotations:
+    bumpCount: "1"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/evoteum/itsbeginningtolookalotlikechristmas.git
+    targetRevision: main
+    path: chart
+    helm:
+      releaseName: itsbeginningtolookalotlikechristmas
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: itsbeginningtolookalotlikechristmas
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -5,7 +5,7 @@ metadata:
   namespace: itsbeginningtolookalotlikechristmas
 spec:
   parentRefs:
-    - name: gateway
+    - name: cloudflare-gateway
       namespace: cloudflare-gateway
   hostnames:
     - itsbeginningtolookalotlike.christmas

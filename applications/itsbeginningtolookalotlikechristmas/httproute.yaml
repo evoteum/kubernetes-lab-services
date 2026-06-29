@@ -11,5 +11,5 @@ spec:
     - itsbeginningtolookalotlike.christmas
   rules:
     - backendRefs:
-        - name: site
+        - name: itsbeginningtolookalotlikechristmas
           port: 8080

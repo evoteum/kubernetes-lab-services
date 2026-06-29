@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: itsbeginningtolookalotlikechristmas-datagather
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/evoteum/itsbeginningtolookalotlikechristmas-datagather.git
+    targetRevision: main
+    path: chart
+    helm:
+      releaseName: itsbeginningtolookalotlikechristmas-datagather
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: itsbeginningtolookalotlikechristmas-datagather
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

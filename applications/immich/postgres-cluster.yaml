@@ -1,17 +1,26 @@
+# Suggested in docs https://github.com/immich-app/immich-charts/blob/main/local/cloudnative-pg.yaml
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: immich-postgres
-  namespace: immich
+  name: immich-database
 spec:
   instances: 1
-  imageName: ghcr.io/immich-app/postgres:16-vectorchord0.3.0
-  bootstrap:
-    initdb:
-      database: immich
-      owner: immich
-      secret:
-        name: immich-postgres-credentials
+
   storage:
-    size: 10Gi
-    storageClass: ceph-block
+    size: 1Gi
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:18-standard-trixie
+
+  postgresql:
+    shared_preload_libraries:
+      - "vchord.so"
+
+    # This extension is loaded via the Database CRD at cloudnative-pg-database.yaml
+    extensions:
+      - name: vchord
+        image:
+          reference: ghcr.io/tensorchord/vchord-scratch:pg18-v1.1.1
+        dynamic_library_path:
+          - /usr/lib/postgresql/18/lib
+        extension_control_path:
+          - /usr/share/postgresql/18/

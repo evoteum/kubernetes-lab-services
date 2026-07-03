@@ -10,8 +10,6 @@ spec:
     initdb:
       database: immich
       owner: immich
-      secret:
-        name: immich-database-credentials
   storage:
     size: 10Gi
     storageClass: ceph-block

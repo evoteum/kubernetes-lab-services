@@ -26,12 +26,12 @@ spec:
                   DB_USERNAME:
                     valueFrom:
                       secretKeyRef:
-                        name: immich-database-credentials
+                        name: immich-database-app
                         key: username
                   DB_PASSWORD:
                     valueFrom:
                       secretKeyRef:
-                        name: immich-database-credentials
+                        name: immich-database-app
                         key: password
 
         valkey:

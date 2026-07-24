@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: ghcr.io/immich-app/immich-charts
     chart: immich
-    targetRevision: 0.12.0
+    targetRevision: 0.13.1
     helm:
       releaseName: immich
       valuesObject:
@@ -19,17 +19,22 @@ spec:
               strategy: Recreate
               containers:
                 main:
-                  image:
-                    tag: v2.6.3
                   env:
-                    DB_HOSTNAME: immich-database-rw
-                    DB_PORT: "5432"
-                    DB_DATABASE_NAME: immich
+                    DB_HOSTNAME:
+                      valueFrom:
+                        secretKeyRef:
+                          name: immich-database-app
+                          key: host
+                    DB_DATABASE_NAME:
+                      valueFrom:
+                        secretKeyRef:
+                          name: immich-database-app
+                          key: dbname
                     DB_USERNAME:
                       valueFrom:
                         secretKeyRef:
                           name: immich-database-app
-                          key: username
+                          key: user
                     DB_PASSWORD:
                       valueFrom:
                         secretKeyRef:
@@ -38,6 +43,9 @@ spec:
 
         valkey:
           enabled: true
+          controllers:
+            main:
+              strategy: Recreate
           persistence:
             data:
               enabled: true

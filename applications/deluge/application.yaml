@@ -6,9 +6,25 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://k8s-at-home.com/charts/
+    repoURL: https://rubxkube.github.io/charts/
     chart: deluge
-    targetRevision: 5.4.2
+    targetRevision: 1.2.1
+    helm:
+      values: |
+        common:
+          persistence:
+            enabled: true
+            volumes:
+              - name: "config"
+                storageClassName: "ceph-block"
+                size: "2Gi"
+                pvcClaim: ""
+                containerMount: "/config/"
+              - name: "downloads"
+                storageClassName: "ceph-block"
+                size: "100Gi"
+                pvcClaim: ""
+                containerMount: "/downloads/"
   destination:
     server: https://kubernetes.default.svc
     namespace: deluge
